@@ -1,12 +1,12 @@
 #
 # Conditional build:
-# _without_xosd	- without XOSD support
+%bcond_without	xosd	# without XOSD support
 #
 Summary:	Control multimedia keys on modern keyboards
 Summary(pl):	Obs³uga klawiszy multimedialnych wystêpuj±cych na nowych klawiaturach
 Name:		lineakd
 Version:	0.7.2
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/lineak/%{name}-%{version}.tar.gz
@@ -19,8 +19,8 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
-%{!?_without_xosd:BuildRequires:	xosd-devel}
-Requires:	%{name}-defs
+%{?with_xosd:BuildRequires:	xosd-devel}
+Requires:	%{name}-defs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -36,12 +36,13 @@ mo¿liwo¶æ konfiguracji wszystkich klawiszy (poprzez GUI z oddzielnego
 pakietu lub plik .conf), sterowania g³o¶no¶ci± i d¼wiêkiem.
 
 %package defs
-Summary:	Control multimedia keys on modern keyboards - keyboard deffinitions for lineakd
+Summary:	Keyboard definitions for lineakd
 Summary(pl):	Definicje klawiatur dla lineakd
 Group:		Applications/System
+Conflicts:	lineakd < 0.7.2-4
 
 %description defs
-Keyboard deffinitions for lineakd.
+Keyboard definitions for lineakd.
 
 %description defs -l pl
 Definicje klawiatur dla lineakd.
@@ -62,7 +63,7 @@ mv -f acinclude.m4.tmp acinclude.m4
 %{__autoheader}
 %{__automake}
 %configure \
-	%{?_without_xosd:--with-xosd=no} \
+	%{!?with_xosd:--with-xosd=no}
 
 %{__make}
 
