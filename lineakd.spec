@@ -10,6 +10,7 @@ Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/lineak/%{name}-%{version}.tar.gz
+# Source0-md5:	7a07e8ae027fd1418b2888b841cb89da
 URL:		http://lineak.sourceforge.net/
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
