@@ -20,6 +20,7 @@ BuildRequires:	automake
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 %{!?_without_xosd:BuildRequires:	xosd-devel}
+Requires:	%{name}-defs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -33,6 +34,17 @@ Demon obs³uguj±cy klawisze multimedialne wystêpuj±ce na nowych
 klawiaturach. Ma obs³ugê X11, jest niezale¿ny od zarz±dcy okien, daje
 mo¿liwo¶æ konfiguracji wszystkich klawiszy (poprzez GUI z oddzielnego
 pakietu lub plik .conf), sterowania g³o¶no¶ci± i d¼wiêkiem.
+
+%package defs
+Summary:	Control multimedia keys on modern keyboards - keyboard deffinitions for lineakd
+Summary(pl):	Definicje klawiatur dla lineakd
+Group:		Applications/System
+
+%description defs
+Keyboard deffinitions for lineakd.
+
+%description defs -l pl
+Definicje klawiatur dla lineakd.
 
 %prep
 %setup -q
@@ -67,4 +79,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README TODO
 %attr(755,root,root) %{_bindir}/lineakd
+
+%files defs
+%defattr(644,root,root,755)
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/lineakkb.def
