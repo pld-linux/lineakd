@@ -1,7 +1,3 @@
-#
-# Conditional build:
-#%bcond_without	xosd	# without XOSD support
-#
 Summary:	Control multimedia keys on modern keyboards
 Summary(pl):	Obs³uga klawiszy multimedialnych wystêpuj±cych na nowych klawiaturach
 Name:		lineakd
@@ -35,6 +31,31 @@ klawiaturach. Ma obs³ugê X11, jest niezale¿ny od zarz±dcy okien, daje
 mo¿liwo¶æ konfiguracji wszystkich klawiszy (poprzez GUI z oddzielnego
 pakietu lub plik .conf), sterowania g³o¶no¶ci± i d¼wiêkiem.
 
+%package devel
+Summary:	Header files for lineak library
+Summary(pl):	Pliki nag³ówkowe biblioteki lineak
+Group:		Development/Libraries
+Requires:	%{name} = %{version}-%{release}
+Requires:	libstdc++-devel
+
+%description devel
+Header files for lineak library.
+
+%description devel -l pl
+Pliki nag³ówkowe biblioteki lineak.
+
+%package static
+Summary:	Static lineak library
+Summary(pl):	Statyczna biblioteka lineak
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+
+%description static
+Static lineak library.
+
+%description static -l pl
+Statyczna biblioteka lineak.
+
 %package defs
 Summary:	Keyboard definitions for lineakd
 Summary(pl):	Definicje klawiatur dla lineakd
@@ -50,11 +71,11 @@ Definicje klawiatur dla lineakd.
 %prep
 %setup -q -n %{name}-%{version}%{_beta}
 %patch0 -p1
-#%patch1 -p1 --need to be checked
+%patch1 -p1
 
-# kill AC_PROG_LIBTOOL - not needed now?
-#head -n 4672 acinclude.m4 > acinclude.m4.tmp
-#mv -f acinclude.m4.tmp acinclude.m4
+# kill AC_PROG_LIBTOOL
+head -n 4672 acinclude.m4 > acinclude.m4.tmp
+mv -f acinclude.m4.tmp acinclude.m4
 
 %build
 %{__libtoolize}
@@ -63,9 +84,6 @@ Definicje klawiatur dla lineakd.
 %{__autoheader}
 %{__automake}
 %configure
-
-
-#%{!?with_xosd:--with-xosd=no}
 
 %{__make}
 
@@ -78,10 +96,25 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
+
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README TODO
 %attr(755,root,root) %{_bindir}/lineakd
+%attr(755,root,root) %{_libdir}/liblineak.so.*.*.*
+%{_mandir}/man1/lineakd.1*
+
+%files devel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/liblineak.so
+%{_libdir}/liblineak.la
+%{_includedir}/lineak
+
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/liblineak.a
 
 %files defs
 %defattr(644,root,root,755)
