@@ -2,12 +2,12 @@ Summary:	Control multimedia keys on modern keyboards
 Summary(pl):	Obs³uga klawiszy multimedialnych wystêpuj±cych na nowych klawiaturach
 Name:		lineakd
 Version:	0.8
-%define	_beta	beta1
+%define	_beta	beta2
 Release:	0.%{_beta}.0.1
 License:	GPL
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/lineak/%{name}-%{version}%{_beta}.tar.gz
-# Source0-md5:	fb4f86e8b5ff4f5f5ff88599d395ec36
+# Source0-md5:	3894338fe5fb865ee1d34d861c4e1530
 Patch0:		%{name}-achack.patch
 Patch1:		%{name}-DESTDIR.patch
 URL:		http://lineak.sourceforge.net/
@@ -69,12 +69,12 @@ Keyboard definitions for lineakd.
 Definicje klawiatur dla lineakd.
 
 %prep
-%setup -q -n %{name}-%{version}%{_beta}
+%setup -q
 %patch0 -p1
 %patch1 -p1
 
 # kill AC_PROG_LIBTOOL
-head -n 4672 acinclude.m4 > acinclude.m4.tmp
+head -n 5501 acinclude.m4 > acinclude.m4.tmp
 mv -f acinclude.m4.tmp acinclude.m4
 
 %build
