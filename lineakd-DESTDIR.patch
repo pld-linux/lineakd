@@ -1,17 +1,115 @@
---- lineakd-0.7/lineakd/Makefile.am.orig	Mon Sep 29 02:04:16 2003
-+++ lineakd-0.7/lineakd/Makefile.am	Fri Oct 17 12:58:57 2003
-@@ -10,11 +10,11 @@
- EXTRA_DIST = main.cpp functions.h definitions.h configloader.cpp configloader.h lkbd.cpp lkbd.h lconfig.cpp lconfig.h functions.cpp loader.cpp loader.h defloader.cpp defloader.h ldef.cpp ldef.h saver.cpp saver.h lconfigdata.cpp lconfigdata.h eakprocs.h eakprocs.cpp xmgr.cpp xmgr.h cmdprefs.cpp cmdprefs.h soundctrl.cpp soundctrl.h cdromctrl.cpp cdromctrl.h xosdctrl.cpp xosdctrl.h msgpasser.cpp msgpasser.h lkey.cpp lkey.h lineakkb.def lockctrl.cpp lockctrl.h commandexec.cpp commandexec.h lcommand.cpp lcommand.h configdirectives.cpp configdirectives.h OLDCODE 
- 
+--- lineakd-0.8beta1/lineakd/Makefile.am.orig	2003-12-24 15:18:06.000000000 +0100
++++ lineakd-0.8beta1/lineakd/Makefile.am	2004-02-12 00:02:20.376388192 +0100
+@@ -10,11 +10,9 @@
+ EXTRA_DIST = main.cpp eakprocs.h cmdprefs.cpp cmdprefs.h lineakkb.def lineakd.1.gz OLDCODE lineakd_core_functions.h lineakd_core_functions.cpp 
+-man_MANS = lineakd.1.gz
++man_MANS = lineakd.1
  install-data-local:
 -	$(mkinstalldirs) $(sysconfdir)/
+-	$(mkinstalldirs) $(mandir)/man1/
+-	$(mkinstalldirs) $(pkglibdir)/plugins/
 -	$(INSTALL_DATA) $(srcdir)/lineakkb.def $(sysconfdir)/lineakkb.def
+-#	$(INSTALL_DATA) $(srcdir)/lineakd.1.gz $(mandir)/man1/lineakd.1.gz
 +	$(mkinstalldirs) $(DESTDIR)$(sysconfdir)
++	$(mkinstalldirs) $(DESTDIR)$(pkglibdir)/plugins
 +	$(INSTALL_DATA) $(srcdir)/lineakkb.def $(DESTDIR)$(sysconfdir)/lineakkb.def
  
  uninstall-local:
--	-rm -f $(sysconfdir)/lineakkb.def
-+	-rm -f $(DESTDIR)$(sysconfdir)/lineakkb.def
+ 	-rm -f $(sysconfdir)/lineakkb.def
+--- lineakd-0.8beta1/lineak/Makefile.am.orig	2003-12-24 15:18:05.000000000 +0100
++++ lineakd-0.8beta1/lineak/Makefile.am	2004-02-12 00:22:05.559213016 +0100
+@@ -22,50 +22,50 @@
+ EXTRA_DIST = configdirectives.cpp configdirectives.h configloader.cpp configloader.h definitions.h defloader.cpp defloader.h lconfig.cpp lconfig.h lconfigdata.cpp lconfigdata.h ldef.cpp ldef.h lkbd.cpp lkbd.h lkey.cpp lkey.h loader.cpp loader.h msgpasser.cpp msgpasser.h saver.cpp saver.h lcommand.cpp lcommand.h lockctrl.cpp lockctrl.h lineak_util_functions.h lineak_util_functions.cpp lineak_core_functions.h lineak_core_functions.cpp cdromctrl.h cdromctrl.cpp xmgr.cpp xmgr.h displayctrl.cpp displayctrl.h globals.cpp pluginmanager.cpp pluginmanager.h plugin_definitions.h commandexec.cpp commandexec.h
  
- ####### kdevelop will overwrite this part!!! (end)############
- # set the include path found by configure
+ install-data-local:
+-	$(mkinstalldirs) $(includedir)/lineak/
+-	$(INSTALL_DATA) $(srcdir)/configdirectives.h $(includedir)/lineak/configdirectives.h
+-	$(mkinstalldirs) $(includedir)/lineak/
+-	$(INSTALL_DATA) $(srcdir)/configloader.h $(includedir)/lineak/configloader.h
+-	$(mkinstalldirs) $(includedir)/lineak/
+-	$(INSTALL_DATA) $(srcdir)/definitions.h $(includedir)/lineak/definitions.h
+-	$(mkinstalldirs) $(includedir)/lineak/
+-	$(INSTALL_DATA) $(srcdir)/defloader.h $(includedir)/lineak/defloader.h
+-	$(mkinstalldirs) $(includedir)/lineak/
+-	$(INSTALL_DATA) $(srcdir)/lconfig.h $(includedir)/lineak/lconfig.h
+-	$(mkinstalldirs) $(includedir)/lineak/
+-	$(INSTALL_DATA) $(srcdir)/lconfigdata.h $(includedir)/lineak/lconfigdata.h
+-	$(mkinstalldirs) $(includedir)/lineak/
+-	$(INSTALL_DATA) $(srcdir)/ldef.h $(includedir)/lineak/ldef.h
+-	$(mkinstalldirs) $(includedir)/lineak/
+-	$(INSTALL_DATA) $(srcdir)/lkbd.h $(includedir)/lineak/lkbd.h
+-	$(mkinstalldirs) $(includedir)/lineak/
+-	$(INSTALL_DATA) $(srcdir)/lkey.h $(includedir)/lineak/lkey.h
+-	$(mkinstalldirs) $(includedir)/lineak/
+-	$(INSTALL_DATA) $(srcdir)/loader.h $(includedir)/lineak/loader.h
+-	$(mkinstalldirs) $(includedir)/lineak/
+-	$(INSTALL_DATA) $(srcdir)/msgpasser.h $(includedir)/lineak/msgpasser.h
+-	$(mkinstalldirs) $(includedir)/lineak/
+-	$(INSTALL_DATA) $(srcdir)/saver.h $(includedir)/lineak/saver.h
+-	$(mkinstalldirs) $(includedir)/lineak/
+-	$(INSTALL_DATA) $(srcdir)/lcommand.h $(includedir)/lineak/lcommand.h
+-	$(mkinstalldirs) $(includedir)/lineak/
+-	$(INSTALL_DATA) $(srcdir)/lockctrl.h $(includedir)/lineak/lockctrl.h
+-	$(mkinstalldirs) $(includedir)/lineak/
+-	$(INSTALL_DATA) $(srcdir)/lineak_util_functions.h $(includedir)/lineak/lineak_util_functions.h
+-	$(mkinstalldirs) $(includedir)/lineak/
+-	$(INSTALL_DATA) $(srcdir)/lineak_core_functions.h $(includedir)/lineak/lineak_core_functions.h
+-	$(mkinstalldirs) $(includedir)/lineak/
+-	$(INSTALL_DATA) $(srcdir)/cdromctrl.h $(includedir)/lineak/cdromctrl.h
+-	$(mkinstalldirs) $(includedir)/lineak/
+-	$(INSTALL_DATA) $(srcdir)/xmgr.h $(includedir)/lineak/xmgr.h
+-	$(mkinstalldirs) $(includedir)/lineak/
+-	$(INSTALL_DATA) $(srcdir)/displayctrl.h $(includedir)/lineak/displayctrl.h
+-	$(mkinstalldirs) $(includedir)/lineak/
+-	$(INSTALL_DATA) $(srcdir)/plugin_definitions.h $(includedir)/lineak/plugin_definitions.h
+-	$(mkinstalldirs) $(includedir)/lineak/
+-	$(INSTALL_DATA) $(srcdir)/commandexec.h $(includedir)/lineak/commandexec.h
+-	$(mkinstalldirs) $(includedir)/lineak/
+-	$(INSTALL_DATA) $(srcdir)/pluginmanager.h $(includedir)/lineak/pluginmanager.h
++	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
++	$(INSTALL_DATA) $(srcdir)/configdirectives.h $(DESTDIR)$(includedir)/lineak/configdirectives.h
++	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
++	$(INSTALL_DATA) $(srcdir)/configloader.h $(DESTDIR)$(includedir)/lineak/configloader.h
++	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
++	$(INSTALL_DATA) $(srcdir)/definitions.h $(DESTDIR)$(includedir)/lineak/definitions.h
++	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
++	$(INSTALL_DATA) $(srcdir)/defloader.h $(DESTDIR)$(includedir)/lineak/defloader.h
++	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
++	$(INSTALL_DATA) $(srcdir)/lconfig.h $(DESTDIR)$(includedir)/lineak/lconfig.h
++	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
++	$(INSTALL_DATA) $(srcdir)/lconfigdata.h $(DESTDIR)$(includedir)/lineak/lconfigdata.h
++	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
++	$(INSTALL_DATA) $(srcdir)/ldef.h $(DESTDIR)$(includedir)/lineak/ldef.h
++	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
++	$(INSTALL_DATA) $(srcdir)/lkbd.h $(DESTDIR)$(includedir)/lineak/lkbd.h
++	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
++	$(INSTALL_DATA) $(srcdir)/lkey.h $(DESTDIR)$(includedir)/lineak/lkey.h
++	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
++	$(INSTALL_DATA) $(srcdir)/loader.h $(DESTDIR)$(includedir)/lineak/loader.h
++	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
++	$(INSTALL_DATA) $(srcdir)/msgpasser.h $(DESTDIR)$(includedir)/lineak/msgpasser.h
++	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
++	$(INSTALL_DATA) $(srcdir)/saver.h $(DESTDIR)$(includedir)/lineak/saver.h
++	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
++	$(INSTALL_DATA) $(srcdir)/lcommand.h $(DESTDIR)$(includedir)/lineak/lcommand.h
++	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
++	$(INSTALL_DATA) $(srcdir)/lockctrl.h $(DESTDIR)$(includedir)/lineak/lockctrl.h
++	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
++	$(INSTALL_DATA) $(srcdir)/lineak_util_functions.h $(DESTDIR)$(includedir)/lineak/lineak_util_functions.h
++	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
++	$(INSTALL_DATA) $(srcdir)/lineak_core_functions.h $(DESTDIR)$(includedir)/lineak/lineak_core_functions.h
++	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
++	$(INSTALL_DATA) $(srcdir)/cdromctrl.h $(DESTDIR)$(includedir)/lineak/cdromctrl.h
++	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
++	$(INSTALL_DATA) $(srcdir)/xmgr.h $(DESTDIR)$(includedir)/lineak/xmgr.h
++	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
++	$(INSTALL_DATA) $(srcdir)/displayctrl.h $(DESTDIR)$(includedir)/lineak/displayctrl.h
++	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
++	$(INSTALL_DATA) $(srcdir)/plugin_definitions.h $(DESTDIR)$(includedir)/lineak/plugin_definitions.h
++	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
++	$(INSTALL_DATA) $(srcdir)/commandexec.h $(DESTDIR)$(includedir)/lineak/commandexec.h
++	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
++	$(INSTALL_DATA) $(srcdir)/pluginmanager.h $(DESTDIR)$(includedir)/lineak/pluginmanager.h
+ 
+ uninstall-local:
+ 	-rm -f $(includedir)/lineak/configdirectives.h
