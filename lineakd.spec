@@ -1,25 +1,25 @@
 #
 # Conditional build:
-%bcond_without	xosd	# without XOSD support
+#%bcond_without	xosd	# without XOSD support
 #
 Summary:	Control multimedia keys on modern keyboards
 Summary(pl):	Obs³uga klawiszy multimedialnych wystêpuj±cych na nowych klawiaturach
 Name:		lineakd
-Version:	0.7.2
-Release:	4
+Version:	0.8
+%define	_beta	beta1
+Release:	0.%{_beta}.0.1
 License:	GPL
 Group:		Applications/System
-Source0:	http://dl.sourceforge.net/lineak/%{name}-%{version}.tar.gz
-# Source0-md5:	986b947ce4f6e3dfa60fd66b4d26ea18
+Source0:	http://dl.sourceforge.net/lineak/%{name}-%{version}%{_beta}.tar.gz
+# Source0-md5:	fb4f86e8b5ff4f5f5ff88599d395ec36
 Patch0:		%{name}-achack.patch
 Patch1:		%{name}-DESTDIR.patch
 URL:		http://lineak.sourceforge.net/
 BuildRequires:	XFree86-devel
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
-%{?with_xosd:BuildRequires:	xosd-devel}
 Requires:	%{name}-defs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -48,13 +48,13 @@ Keyboard definitions for lineakd.
 Definicje klawiatur dla lineakd.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}%{_beta}
 %patch0 -p1
-%patch1 -p1
+#%patch1 -p1 --need to be checked
 
-# kill AC_PROG_LIBTOOL
-head -n 4672 acinclude.m4 > acinclude.m4.tmp
-mv -f acinclude.m4.tmp acinclude.m4
+# kill AC_PROG_LIBTOOL - not needed now?
+#head -n 4672 acinclude.m4 > acinclude.m4.tmp
+#mv -f acinclude.m4.tmp acinclude.m4
 
 %build
 %{__libtoolize}
@@ -62,8 +62,10 @@ mv -f acinclude.m4.tmp acinclude.m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure \
-	%{!?with_xosd:--with-xosd=no}
+%configure
+
+
+#%{!?with_xosd:--with-xosd=no}
 
 %{__make}
 
