@@ -62,7 +62,7 @@ mv -f acinclude.m4.tmp acinclude.m4
 %{__autoheader}
 %{__automake}
 %configure \
-	%{!?_without_xosd:--with-xosd}
+	%{?_without_xosd:--with-xosd=no} \
 
 %{__make}
 
