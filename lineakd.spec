@@ -1,3 +1,7 @@
+#
+# Conditional build:
+# _without_xosd	- without XOSD support
+#
 Summary:	Control multimedia keys on modern keyboards
 Summary(pl):	Obs³uga klawiszy multimedialnych wystêpuj±cych na nowych klawiaturach
 Name:		lineakd
@@ -10,7 +14,7 @@ URL:		http://lineak.sourceforge.net/
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
-#BuildRequires:	xosd-devel
+%{!?_without_xosd:BuildRequires:	xosd-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -33,7 +37,8 @@ pakietu lub plik .conf), sterowania g³o¶no¶ci± i d¼wiêkiem.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure
+%configure \
+	%{!?_without_xosd:--with-xosd}
 
 %{__make}
 
