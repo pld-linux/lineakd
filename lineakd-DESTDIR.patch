@@ -1,0 +1,17 @@
+--- lineakd-0.7/lineakd/Makefile.am.orig	Mon Sep 29 02:04:16 2003
++++ lineakd-0.7/lineakd/Makefile.am	Fri Oct 17 12:58:57 2003
+@@ -10,11 +10,11 @@
+ EXTRA_DIST = main.cpp functions.h definitions.h configloader.cpp configloader.h lkbd.cpp lkbd.h lconfig.cpp lconfig.h functions.cpp loader.cpp loader.h defloader.cpp defloader.h ldef.cpp ldef.h saver.cpp saver.h lconfigdata.cpp lconfigdata.h eakprocs.h eakprocs.cpp xmgr.cpp xmgr.h cmdprefs.cpp cmdprefs.h soundctrl.cpp soundctrl.h cdromctrl.cpp cdromctrl.h xosdctrl.cpp xosdctrl.h msgpasser.cpp msgpasser.h lkey.cpp lkey.h lineakkb.def lockctrl.cpp lockctrl.h commandexec.cpp commandexec.h lcommand.cpp lcommand.h configdirectives.cpp configdirectives.h OLDCODE 
+ 
+ install-data-local:
+-	$(mkinstalldirs) $(sysconfdir)/
+-	$(INSTALL_DATA) $(srcdir)/lineakkb.def $(sysconfdir)/lineakkb.def
++	$(mkinstalldirs) $(DESTDIR)$(sysconfdir)
++	$(INSTALL_DATA) $(srcdir)/lineakkb.def $(DESTDIR)$(sysconfdir)/lineakkb.def
+ 
+ uninstall-local:
+-	-rm -f $(sysconfdir)/lineakkb.def
++	-rm -f $(DESTDIR)$(sysconfdir)/lineakkb.def
+ 
+ ####### kdevelop will overwrite this part!!! (end)############
+ # set the include path found by configure
