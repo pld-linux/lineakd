@@ -6,7 +6,7 @@ Summary:	Control multimedia keys on modern keyboards
 Summary(pl):	Obs³uga klawiszy multimedialnych wystêpuj±cych na nowych klawiaturach
 Name:		lineakd
 Version:	0.7.2
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/lineak/%{name}-%{version}.tar.gz
