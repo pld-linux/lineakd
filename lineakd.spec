@@ -20,10 +20,10 @@ Requires:	%{name}-defs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Daemon to control the multimedia keys on modern keyboards.
-Features X11 support, window manager independence, ability to
-configure all keys (via GUI from separate package or .conf file),
-volume control, and sound controls.
+Daemon to control the multimedia keys on modern keyboards. Features
+X11 support, window manager independence, ability to configure all
+keys (via GUI from separate package or .conf file), volume control,
+and sound controls.
 
 %description -l pl
 Demon obs³uguj±cy klawisze multimedialne wystêpuj±ce na nowych
@@ -118,4 +118,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files defs
 %defattr(644,root,root,755)
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/lineakkb.def
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/lineakkb.def
