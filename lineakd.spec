@@ -1,15 +1,17 @@
+#
+# TODO:
+# - make libtoolize build correct .so librarires
+#
 Summary:	Control multimedia keys on modern keyboards
 Summary(pl):	Obs³uga klawiszy multimedialnych wystêpuj±cych na nowych klawiaturach
 Name:		lineakd
-Version:	0.8
-%define	_beta	beta2
-Release:	0.%{_beta}.0.1
+Version:	0.8.4
+Release:	0.1
 License:	GPL
 Group:		Applications/System
-Source0:	http://dl.sourceforge.net/lineak/%{name}-%{version}%{_beta}.tar.gz
-# Source0-md5:	3894338fe5fb865ee1d34d861c4e1530
-Patch0:		%{name}-achack.patch
-Patch1:		%{name}-DESTDIR.patch
+Source0:	http://dl.sourceforge.net/lineak/%{name}-%{version}.tar.gz
+# Source0-md5:	8f0b4c38c3a46bfd2613e371e8fd2440
+Patch0:		%{name}-DESTDIR.patch
 URL:		http://lineak.sourceforge.net/
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf >= 2.54
@@ -71,20 +73,17 @@ Definicje klawiatur dla lineakd.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-
-# kill AC_PROG_LIBTOOL
-head -n 5501 acinclude.m4 > acinclude.m4.tmp
-mv -f acinclude.m4.tmp acinclude.m4
 
 %build
-%{__libtoolize}
+#libtoolize makes libs build without .so extension
+#%{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__autoheader}
 %{__automake}
 %configure
 
+cd lineak
 %{__make}
 
 %install
@@ -101,10 +100,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog README TODO
+%doc AUTHORS ChangeLog README TODO lineakd.conf.example lineakd.conf.kde.example lineakkb.def.custom_example
 %attr(755,root,root) %{_bindir}/lineakd
+%attr(750,root,root) %{_sbindir}/*
 %attr(755,root,root) %{_libdir}/liblineak.so.*.*.*
+%dir %{_libdir}/%{name}
+%dir %{_libdir}/%{name}/plugins
 %{_mandir}/man1/lineakd.1*
+%{_mandir}/man8/*
 
 %files devel
 %defattr(644,root,root,755)
