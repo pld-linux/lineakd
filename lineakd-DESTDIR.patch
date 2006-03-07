@@ -1,125 +1,69 @@
---- lineakd-0.8/lineakd/Makefile.am.orig	2004-02-08 16:32:07.000000000 +0100
-+++ lineakd-0.8/lineakd/Makefile.am	2004-02-12 00:41:33.601643576 +0100
-@@ -8,20 +8,15 @@
- lineakd_LDADD   = -lpthread -lXss -llineak -lXext -lX11 -ldl
+diff -urN lineakd-0.8.4.orig/lineakd/Makefile.am lineakd-0.8.4/lineakd/Makefile.am
+--- lineakd-0.8.4.orig/lineakd/Makefile.am	2005-07-18 00:28:38.000000000 +0200
++++ lineakd-0.8.4/lineakd/Makefile.am	2006-03-07 10:37:20.000000000 +0100
+@@ -16,17 +16,17 @@
+ 	bzip2 -c lineakd.1 > lineakd.1.bz2
  
- EXTRA_DIST = main.cpp eakprocs.h cmdprefs.cpp cmdprefs.h lineakkb.def lineakd.1.bz2 OLDCODE lineakd_core_functions.h lineakd_core_functions.cpp 
--#man_MANS = lineakd.1.gz
--lineakd.1.bz2:
--	bzip2 -c lineakd.1 > lineakd.1.bz2
-+man_MANS = lineakd.1
- 
--install-data-local: lineakd.1.bz2
+ install-data-local: lineakd.1.bz2
 -	$(mkinstalldirs) $(sysconfdir)/
 -	$(mkinstalldirs) $(mandir)/man1/
 -	$(mkinstalldirs) $(pkglibdir)/plugins/
 -	$(INSTALL_DATA) $(srcdir)/lineakkb.def $(sysconfdir)/lineakkb.def
 -	$(INSTALL_DATA) $(srcdir)/lineakd.1.bz2 $(mandir)/man1/lineakd.1.bz2
-+install-data-local:
-+	$(mkinstalldirs) $(DESTDIR)$(sysconfdir)
-+	$(mkinstalldirs) $(DESTDIR)$(pkglibdir)/plugins
++	$(mkinstalldirs) $(DESTDIR)$(sysconfdir)/
++	$(mkinstalldirs) $(DESTDIR)$(mandir)/man1/
++	$(mkinstalldirs) $(DESTDIR)$(pkglibdir)/plugins/
 +	$(INSTALL_DATA) $(srcdir)/lineakkb.def $(DESTDIR)$(sysconfdir)/lineakkb.def
++	$(INSTALL_DATA) $(srcdir)/lineakd.1.bz2 $(DESTDIR)$(mandir)/man1/lineakd.1.bz2
+ 	 if test "$(SETKEYCODES_SUID)" != "no" ; then \
+            chown root `which setkeycodes` ; \
+            chmod +s `which setkeycodes` ; \
+         fi
  
  uninstall-local:
- 	-rm -f $(sysconfdir)/lineakkb.def
+-	-rm -f $(sysconfdir)/lineakkb.def
 -	-rm -f $(mandir)/man1/lineakd.1.bz2
++	-rm -f $(DESTDIR)$(sysconfdir)/lineakkb.def
++	-rm -f $(DESTDIR)$(mandir)/man1/lineakd.1.bz2
  
- ####### kdevelop will overwrite this part!!! (end)############
- # set the include path found by configure
---- lineakd-0.8beta1/lineak/Makefile.am.orig	2003-12-24 15:18:05.000000000 +0100
-+++ lineakd-0.8beta1/lineak/Makefile.am	2004-02-12 00:22:05.559213016 +0100
-@@ -22,50 +22,50 @@
- EXTRA_DIST = configdirectives.cpp configdirectives.h configloader.cpp configloader.h definitions.h defloader.cpp defloader.h lconfig.cpp lconfig.h lconfigdata.cpp lconfigdata.h ldef.cpp ldef.h lkbd.cpp lkbd.h lkey.cpp lkey.h loader.cpp loader.h msgpasser.cpp msgpasser.h saver.cpp saver.h lcommand.cpp lcommand.h lockctrl.cpp lockctrl.h lineak_util_functions.h lineak_util_functions.cpp lineak_core_functions.h lineak_core_functions.cpp cdromctrl.h cdromctrl.cpp xmgr.cpp xmgr.h displayctrl.cpp displayctrl.h globals.cpp pluginmanager.cpp pluginmanager.h plugin_definitions.h commandexec.cpp commandexec.h
- 
- install-data-local:
--	$(mkinstalldirs) $(includedir)/lineak/
--	$(INSTALL_DATA) $(srcdir)/configdirectives.h $(includedir)/lineak/configdirectives.h
--	$(mkinstalldirs) $(includedir)/lineak/
--	$(INSTALL_DATA) $(srcdir)/configloader.h $(includedir)/lineak/configloader.h
--	$(mkinstalldirs) $(includedir)/lineak/
--	$(INSTALL_DATA) $(srcdir)/definitions.h $(includedir)/lineak/definitions.h
--	$(mkinstalldirs) $(includedir)/lineak/
--	$(INSTALL_DATA) $(srcdir)/defloader.h $(includedir)/lineak/defloader.h
--	$(mkinstalldirs) $(includedir)/lineak/
--	$(INSTALL_DATA) $(srcdir)/lconfig.h $(includedir)/lineak/lconfig.h
--	$(mkinstalldirs) $(includedir)/lineak/
--	$(INSTALL_DATA) $(srcdir)/lconfigdata.h $(includedir)/lineak/lconfigdata.h
--	$(mkinstalldirs) $(includedir)/lineak/
--	$(INSTALL_DATA) $(srcdir)/ldef.h $(includedir)/lineak/ldef.h
--	$(mkinstalldirs) $(includedir)/lineak/
--	$(INSTALL_DATA) $(srcdir)/lkbd.h $(includedir)/lineak/lkbd.h
--	$(mkinstalldirs) $(includedir)/lineak/
--	$(INSTALL_DATA) $(srcdir)/lkey.h $(includedir)/lineak/lkey.h
--	$(mkinstalldirs) $(includedir)/lineak/
--	$(INSTALL_DATA) $(srcdir)/loader.h $(includedir)/lineak/loader.h
--	$(mkinstalldirs) $(includedir)/lineak/
--	$(INSTALL_DATA) $(srcdir)/msgpasser.h $(includedir)/lineak/msgpasser.h
--	$(mkinstalldirs) $(includedir)/lineak/
--	$(INSTALL_DATA) $(srcdir)/saver.h $(includedir)/lineak/saver.h
--	$(mkinstalldirs) $(includedir)/lineak/
--	$(INSTALL_DATA) $(srcdir)/lcommand.h $(includedir)/lineak/lcommand.h
--	$(mkinstalldirs) $(includedir)/lineak/
--	$(INSTALL_DATA) $(srcdir)/lockctrl.h $(includedir)/lineak/lockctrl.h
--	$(mkinstalldirs) $(includedir)/lineak/
--	$(INSTALL_DATA) $(srcdir)/lineak_util_functions.h $(includedir)/lineak/lineak_util_functions.h
--	$(mkinstalldirs) $(includedir)/lineak/
--	$(INSTALL_DATA) $(srcdir)/lineak_core_functions.h $(includedir)/lineak/lineak_core_functions.h
--	$(mkinstalldirs) $(includedir)/lineak/
--	$(INSTALL_DATA) $(srcdir)/cdromctrl.h $(includedir)/lineak/cdromctrl.h
--	$(mkinstalldirs) $(includedir)/lineak/
--	$(INSTALL_DATA) $(srcdir)/xmgr.h $(includedir)/lineak/xmgr.h
--	$(mkinstalldirs) $(includedir)/lineak/
--	$(INSTALL_DATA) $(srcdir)/displayctrl.h $(includedir)/lineak/displayctrl.h
--	$(mkinstalldirs) $(includedir)/lineak/
--	$(INSTALL_DATA) $(srcdir)/plugin_definitions.h $(includedir)/lineak/plugin_definitions.h
--	$(mkinstalldirs) $(includedir)/lineak/
--	$(INSTALL_DATA) $(srcdir)/commandexec.h $(includedir)/lineak/commandexec.h
--	$(mkinstalldirs) $(includedir)/lineak/
--	$(INSTALL_DATA) $(srcdir)/pluginmanager.h $(includedir)/lineak/pluginmanager.h
-+	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
-+	$(INSTALL_DATA) $(srcdir)/configdirectives.h $(DESTDIR)$(includedir)/lineak/configdirectives.h
-+	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
-+	$(INSTALL_DATA) $(srcdir)/configloader.h $(DESTDIR)$(includedir)/lineak/configloader.h
-+	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
-+	$(INSTALL_DATA) $(srcdir)/definitions.h $(DESTDIR)$(includedir)/lineak/definitions.h
-+	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
-+	$(INSTALL_DATA) $(srcdir)/defloader.h $(DESTDIR)$(includedir)/lineak/defloader.h
-+	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
-+	$(INSTALL_DATA) $(srcdir)/lconfig.h $(DESTDIR)$(includedir)/lineak/lconfig.h
-+	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
-+	$(INSTALL_DATA) $(srcdir)/lconfigdata.h $(DESTDIR)$(includedir)/lineak/lconfigdata.h
-+	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
-+	$(INSTALL_DATA) $(srcdir)/ldef.h $(DESTDIR)$(includedir)/lineak/ldef.h
-+	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
-+	$(INSTALL_DATA) $(srcdir)/lkbd.h $(DESTDIR)$(includedir)/lineak/lkbd.h
-+	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
-+	$(INSTALL_DATA) $(srcdir)/lkey.h $(DESTDIR)$(includedir)/lineak/lkey.h
-+	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
-+	$(INSTALL_DATA) $(srcdir)/loader.h $(DESTDIR)$(includedir)/lineak/loader.h
-+	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
-+	$(INSTALL_DATA) $(srcdir)/msgpasser.h $(DESTDIR)$(includedir)/lineak/msgpasser.h
-+	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
-+	$(INSTALL_DATA) $(srcdir)/saver.h $(DESTDIR)$(includedir)/lineak/saver.h
-+	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
-+	$(INSTALL_DATA) $(srcdir)/lcommand.h $(DESTDIR)$(includedir)/lineak/lcommand.h
-+	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
-+	$(INSTALL_DATA) $(srcdir)/lockctrl.h $(DESTDIR)$(includedir)/lineak/lockctrl.h
-+	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
-+	$(INSTALL_DATA) $(srcdir)/lineak_util_functions.h $(DESTDIR)$(includedir)/lineak/lineak_util_functions.h
-+	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
-+	$(INSTALL_DATA) $(srcdir)/lineak_core_functions.h $(DESTDIR)$(includedir)/lineak/lineak_core_functions.h
-+	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
-+	$(INSTALL_DATA) $(srcdir)/cdromctrl.h $(DESTDIR)$(includedir)/lineak/cdromctrl.h
-+	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
-+	$(INSTALL_DATA) $(srcdir)/xmgr.h $(DESTDIR)$(includedir)/lineak/xmgr.h
-+	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
-+	$(INSTALL_DATA) $(srcdir)/displayctrl.h $(DESTDIR)$(includedir)/lineak/displayctrl.h
-+	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
-+	$(INSTALL_DATA) $(srcdir)/plugin_definitions.h $(DESTDIR)$(includedir)/lineak/plugin_definitions.h
-+	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
-+	$(INSTALL_DATA) $(srcdir)/commandexec.h $(DESTDIR)$(includedir)/lineak/commandexec.h
-+	$(mkinstalldirs) $(DESTDIR)$(includedir)/lineak/
-+	$(INSTALL_DATA) $(srcdir)/pluginmanager.h $(DESTDIR)$(includedir)/lineak/pluginmanager.h
+diff -urN lineakd-0.8.4.orig/utils/Makefile.am lineakd-0.8.4/utils/Makefile.am
+--- lineakd-0.8.4.orig/utils/Makefile.am	2005-08-01 06:42:32.000000000 +0200
++++ lineakd-0.8.4/utils/Makefile.am	2006-03-07 10:31:50.000000000 +0100
+@@ -52,27 +52,27 @@
+ #install-data-local: send_to_keyboard.8.bz2 evtest.1.bz2 xsendkeycode.8.bz2 xsendkeys.8.bz2
+ if EVTEST
+ install-data-local: send_to_keyboard.8.bz2 evtest.1.bz2 xsendkeycode.8.bz2 xsendkeys.8.bz2
+-	$(mkinstalldirs) $(mandir)/man1/
+-	$(INSTALL_DATA) $(srcdir)/evtest.1.bz2 $(mandir)/man1/evtest.1.bz2
++	$(mkinstalldirs) $(DESTIDR)$(mandir)/man1/
++	$(INSTALL_DATA) $(srcdir)/evtest.1.bz2 $(DESTDIR)$(mandir)/man1/evtest.1.bz2
+ else
+ install-data-local: send_to_keyboard.8.bz2 xsendkeycode.8.bz2 xsendkeys.8.bz2
+ endif
+ if SEND_TO_KEYBOARD
+-	$(mkinstalldirs) $(mandir)/man8/
++	$(mkinstalldirs) $(DESTDIR)$(mandir)/man8/
+ 	chmod 755 $(DESTDIR)$(prefix)/sbin/send_to_keyboard
+ 	if test "$(HELPER_SUID)" != "no" ; then \
+ 	   chown root $(DESTDIR)$(prefix)/sbin/send_to_keyboard ; \
+ 	   chmod +s $(DESTDIR)$(prefix)/sbin/send_to_keyboard ; \
+ 	fi
+-	$(INSTALL_DATA) $(srcdir)/send_to_keyboard.8.bz2 $(mandir)/man8/send_to_keyboard.8.bz2
++	$(INSTALL_DATA) $(srcdir)/send_to_keyboard.8.bz2 $(DESTDIR)$(mandir)/man8/send_to_keyboard.8.bz2
+ endif
+-	$(INSTALL_DATA) $(srcdir)/xsendkeycode.8.bz2 $(mandir)/man8/xsendkeycode.8.bz2
+-	$(INSTALL_DATA) $(srcdir)/xsendkeys.8.bz2 $(mandir)/man8/xsendkeys.8.bz2
++	$(INSTALL_DATA) $(srcdir)/xsendkeycode.8.bz2 $(DESTDIR)$(mandir)/man8/xsendkeycode.8.bz2
++	$(INSTALL_DATA) $(srcdir)/xsendkeys.8.bz2 $(DESTDIR)$(mandir)/man8/xsendkeys.8.bz2
  
  uninstall-local:
- 	-rm -f $(includedir)/lineak/configdirectives.h
+-	-rm -f $(mandir)/man8/send_to_keyboard.8.bz2
+-	-rm -f $(mandir)/man8/xsendkeycode.8.bz2
+-	-rm -f $(mandir)/man8/xsendkeys.8.bz2
++	-rm -f $(DESTDIR)$(mandir)/man8/send_to_keyboard.8.bz2
++	-rm -f $(DESTDIR)$(mandir)/man8/xsendkeycode.8.bz2
++	-rm -f $(DESTDIR)$(mandir)/man8/xsendkeys.8.bz2
+ if EVTEST
+-	-rm -f $(mandir)/man1/evtest.1.bz2
++	-rm -f $(DESTDIR)$(mandir)/man1/evtest.1.bz2
+ endif
