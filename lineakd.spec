@@ -8,12 +8,14 @@ Group:		Applications/System
 Source0:	http://dl.sourceforge.net/lineak/%{name}-%{version}.tar.gz
 # Source0-md5:	8f0b4c38c3a46bfd2613e371e8fd2440
 Patch0:		%{name}-DESTDIR.patch
+Patch1:		%{name}-link.patch
 URL:		http://lineak.sourceforge.net/
-BuildRequires:	XFree86-devel
-BuildRequires:	autoconf >= 2.54
+BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
+BuildRequires:	xorg-lib-libXext-devel
+BuildRequires:	xorg-lib-libXtst-devel
 Requires:	%{name}-defs = %{version}-%{release}
 Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -47,6 +49,7 @@ Summary(pl):	Pliki nag³ówkowe biblioteki lineak
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	libstdc++-devel
+Requires:	xorg-lib-libXext-devel
 
 %description devel
 Header files for lineak library.
@@ -81,6 +84,7 @@ Definicje klawiatur dla lineakd.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 cat admin/{acinclude.m4.in,lineak.m4.in} > acinclude.m4
 
