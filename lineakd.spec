@@ -1,14 +1,12 @@
 Summary:	Control multimedia keys on modern keyboards
 Summary(pl):	Obs³uga klawiszy multimedialnych wystêpuj±cych na nowych klawiaturach
 Name:		lineakd
-Version:	0.8.4
+Version:	0.9
 Release:	0.1
 License:	GPL
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/lineak/%{name}-%{version}.tar.gz
-# Source0-md5:	8f0b4c38c3a46bfd2613e371e8fd2440
-Patch0:		%{name}-DESTDIR.patch
-Patch1:		%{name}-link.patch
+# Source0-md5:	8a45672a6cea666873398ecc36a5070c
 URL:		http://lineak.sourceforge.net/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
@@ -83,8 +81,6 @@ Definicje klawiatur dla lineakd.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
 
 cat admin/{acinclude.m4.in,lineak.m4.in} > acinclude.m4
 
@@ -113,7 +109,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README TODO lineakd.conf.example lineakd.conf.kde.example lineakkb.def.custom_example
-%attr(755,root,root) %{_bindir}/lineakd
+%attr(755,root,root) %{_bindir}/*
 %attr(754,root,root) %{_sbindir}/send_to_keyboard
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/plugins
