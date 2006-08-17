@@ -110,7 +110,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README TODO lineakd.conf.example lineakd.conf.kde.example lineakkb.def.custom_example
 %attr(755,root,root) %{_bindir}/*
-%attr(754,root,root) %{_sbindir}/send_to_keyboard
+%ifnarch ppc
+    %attr(754,root,root) %{_sbindir}/send_to_keyboard
+%endif
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/plugins
 %{_mandir}/man1/lineakd.1*
