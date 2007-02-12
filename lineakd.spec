@@ -3,7 +3,7 @@
 # - check for sigservs on startup
 #
 Summary:	Control multimedia keys on modern keyboards
-Summary(pl):	Obs³uga klawiszy multimedialnych wystêpuj±cych na nowych klawiaturach
+Summary(pl.UTF-8):   ObsÅ‚uga klawiszy multimedialnych wystÄ™pujÄ…cych na nowych klawiaturach
 Name:		lineakd
 Version:	0.9
 Release:	0.2
@@ -28,26 +28,26 @@ X11 support, window manager independence, ability to configure all
 keys (via GUI from separate package or .conf file), volume control,
 and sound controls.
 
-%description -l pl
-Demon obs³uguj±cy klawisze multimedialne wystêpuj±ce na nowych
-klawiaturach. Ma obs³ugê X11, jest niezale¿ny od zarz±dcy okien, daje
-mo¿liwo¶æ konfiguracji wszystkich klawiszy (poprzez GUI z oddzielnego
-pakietu lub plik .conf), sterowania g³o¶no¶ci± i d¼wiêkiem.
+%description -l pl.UTF-8
+Demon obsÅ‚ugujÄ…cy klawisze multimedialne wystÄ™pujÄ…ce na nowych
+klawiaturach. Ma obsÅ‚ugÄ™ X11, jest niezaleÅ¼ny od zarzÄ…dcy okien, daje
+moÅ¼liwoÅ›Ä‡ konfiguracji wszystkich klawiszy (poprzez GUI z oddzielnego
+pakietu lub plik .conf), sterowania gÅ‚oÅ›noÅ›ciÄ… i dÅºwiÄ™kiem.
 
 %package libs
 Summary:	Lineak shared library
-Summary(pl):	Biblioteka wspó³dzielona lineak
+Summary(pl.UTF-8):   Biblioteka wspÃ³Å‚dzielona lineak
 Group:		Libraries
 
 %description libs
 Lineak shared library.
 
-%description libs -l pl
-Biblioteka wspó³dzielona lineak.
+%description libs -l pl.UTF-8
+Biblioteka wspÃ³Å‚dzielona lineak.
 
 %package devel
 Summary:	Header files for lineak library
-Summary(pl):	Pliki nag³ówkowe biblioteki lineak
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe biblioteki lineak
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	libstdc++-devel
@@ -56,31 +56,31 @@ Requires:	xorg-lib-libX11-devel
 %description devel
 Header files for lineak library.
 
-%description devel -l pl
-Pliki nag³ówkowe biblioteki lineak.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe biblioteki lineak.
 
 %package static
 Summary:	Static lineak library
-Summary(pl):	Statyczna biblioteka lineak
+Summary(pl.UTF-8):   Statyczna biblioteka lineak
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static lineak library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka lineak.
 
 %package defs
 Summary:	Keyboard definitions for lineakd
-Summary(pl):	Definicje klawiatur dla lineakd
+Summary(pl.UTF-8):   Definicje klawiatur dla lineakd
 Group:		Applications/System
 Conflicts:	lineakd < 0.7.2-4
 
 %description defs
 Keyboard definitions for lineakd.
 
-%description defs -l pl
+%description defs -l pl.UTF-8
 Definicje klawiatur dla lineakd.
 
 %prep
