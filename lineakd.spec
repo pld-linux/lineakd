@@ -3,7 +3,7 @@
 # - check for sigservs on startup
 #
 Summary:	Control multimedia keys on modern keyboards
-Summary(pl.UTF-8):   Obsługa klawiszy multimedialnych występujących na nowych klawiaturach
+Summary(pl.UTF-8):	Obsługa klawiszy multimedialnych występujących na nowych klawiaturach
 Name:		lineakd
 Version:	0.9
 Release:	0.2
@@ -36,7 +36,7 @@ pakietu lub plik .conf), sterowania głośnością i dźwiękiem.
 
 %package libs
 Summary:	Lineak shared library
-Summary(pl.UTF-8):   Biblioteka współdzielona lineak
+Summary(pl.UTF-8):	Biblioteka współdzielona lineak
 Group:		Libraries
 
 %description libs
@@ -47,7 +47,7 @@ Biblioteka współdzielona lineak.
 
 %package devel
 Summary:	Header files for lineak library
-Summary(pl.UTF-8):   Pliki nagłówkowe biblioteki lineak
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki lineak
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	libstdc++-devel
@@ -61,7 +61,7 @@ Pliki nagłówkowe biblioteki lineak.
 
 %package static
 Summary:	Static lineak library
-Summary(pl.UTF-8):   Statyczna biblioteka lineak
+Summary(pl.UTF-8):	Statyczna biblioteka lineak
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -73,7 +73,7 @@ Statyczna biblioteka lineak.
 
 %package defs
 Summary:	Keyboard definitions for lineakd
-Summary(pl.UTF-8):   Definicje klawiatur dla lineakd
+Summary(pl.UTF-8):	Definicje klawiatur dla lineakd
 Group:		Applications/System
 Conflicts:	lineakd < 0.7.2-4
 
